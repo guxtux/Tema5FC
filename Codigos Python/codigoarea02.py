@@ -6,6 +6,7 @@
 import random
 import time
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def MCint_area(f, a, b, n, m):
@@ -63,4 +64,7 @@ print (I[-1])
 
 error = 6.5 - np.array(I)
 
-print(error)
+plt.plot(k, error, label='Integracion Monte Carlo')
+plt.xlabel('Numero de puntos')
+plt.ylabel('Error')
+plt.show()

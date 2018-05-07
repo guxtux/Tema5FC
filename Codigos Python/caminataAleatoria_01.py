@@ -23,16 +23,13 @@ turtle.bgcolor('black')
 hue=0.0
 for i in range(npasos):
     turtle.setheading(randint(0,359))
-    #   https://docs.python.org/2/library/colorsys.html
+    
     turtle.color(hsv_to_rgb(hue, 1.0, 1.0))  
     hue += hinc                           
     turtle.forward(paso)
     (x,y) = turtle.pos()                  
     if abs(x) > w or abs(y) > h:
         turtle.backward(paso)                     
-
-
-
 
 ts = turtle.getscreen()
 turtle.done()

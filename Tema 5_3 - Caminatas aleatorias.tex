@@ -8,7 +8,7 @@
 \usepackage[T1]{fontenc}% http://ctan.or/pkg/fontenc
 \renewcommand{\rmdefault}{cmr}% cmr = Computer Modern Roman
 \linespread{1.3}
-\title{\textcolor{black}{Caminatas aleatorias}}
+\title{\textcolor{black}{Métodos de Monte Carlo - 3}}
 \subtitle{Curso de Física Computacional}
 \author[]{M. en C. Gustavo Contreras Mayén}
 \setbeamercolor{background canvas}{bg=white} %white = default
@@ -20,6 +20,7 @@
 \setbeamertemplate{subsection in toc}{%
   \hspace{1.2em}{\color{orange}\rule[0.3ex]{3pt}{3pt}}~\inserttocsubsection\par}
 \setbeamercolor{framesubtitle}{fg=blue}
+\beamertemplatenavigationsymbolsempty
 \begin{document}
 \newcommand{\localtextbulletone}{\textcolor{gray}{\raisebox{.45ex}{\rule{.6ex}{.6ex}}}}
 \maketitle
@@ -315,6 +316,7 @@ Las caminatas aleatorias tienen una dimensión fractal $D = 2$.
 %checar A Random Walk Through Fractal Dimensions
 \end{frame}
 \section{Construir una caminata aleatoria}
+\frame{\tableofcontents[currentsection, hideothersubsections]}
 \subsection{El módulo \texttt{turtle}}
 \begin{frame}
 \frametitle{Construyamos una caminata aleatoria}
@@ -341,12 +343,51 @@ Si usamos ahora la función \funcionazul{turtle.right($25$)}, ésta gira un áng
 \bigskip
 Con la combinación de éstos comandos y otros similares, podemos dibujar formas complejas fácilmente.
 \end{frame}
+\subsection*{Modelo de color HSV}
+\begin{frame}
+\frametitle{Algo muy breve de teoría del color}
+El modelo HSV (del inglés Hue, Saturation, Value – Matiz, Saturación, Valor), también llamado HSB (Hue, Saturation, Brightness – Matiz, Saturación, Brillo), define un modelo de color en términos de sus componentes.
+\end{frame}
+\begin{frame}
+\frametitle{El Matiz}
+El matiz es el término más básico del color y denota el color de un objeto.
+\\
+\bigskip
+Cuando decimos \enquote{azul}, \enquote{rojo} o \enquote{verde}, se habla de matices.
+\end{frame}
+\begin{frame}
+\frametitle{La saturación}
+La saturación se refiere a cómo un matiz aparece bajo ciertas condiciones de luz.
+\\
+\bigskip
+Podemos pensar en la saturación en términos de débil vs. fuerte o matices pálidos vs. puros.     
+\end{frame}
+\begin{frame}
+\frametitle{El valor}
+El valor podría ser llamado también \enquote{claridad}.
+\\
+\bigskip
+Se refiere a qué tan claro u oscuro es un color. Los colores claros tienen valores más altos.
+\\
+\bigskip
+Por ejemplo, el naranja tiene un valor más alto que el azul marino. El negro tiene el menor valor de todos los colores y el blanco tiene el más alto.
+\end{frame}
+\begin{frame}
+\frametitle{¿Para qué queremos el HSV}
+Para la caminata aleatoria que elaboraremos, se va a dibujar la trayectoria con un color, para evitar que con el mismo color negro se empalmen los trazos.
+\\
+\bigskip
+Entonces lo que haremos será decirle a la computadora que cambie el color de acuerdo a cierta instrucción, que recibirá la función \funcionazul{hsv\_to\_rgb}, que modificará el color con el modelo RGB (rojo, verde, azul), que es el que utiliza \python{}.
+    
+
+
+\end{frame}
 \begin{frame}[plain, allowframebreaks, fragile]
 \frametitle{Código con python}
 \begin{lstlisting}[caption=Definición del espacio de trabajo, style=FormattedNumber, basicstyle=\linespread{1.1}\ttfamily=\small, columns=fullflexible]
 import turtle
 from random import randint
-from colorsys import hsv-to-rgb
+from colorsys import hsv_\textunderscore_to_\textunderscore_rgb
 
 #longitud del paso
 paso = 30
@@ -415,11 +456,4 @@ turtle.done()
 	\includegraphics[scale=0.3]{Imagenes/caminataAleatoria_Python_01.eps}
 \end{figure}
 \end{frame}
-%\begin{frame}
-% \frametitle{Problema a cuenta de examen}
-% Para diferentes valores de $N$ número de pasos, gráfica $\sqrt{N}$ vs $R$ la longitud total de la caminata.
-% \\
-% \bigskip
-% Discute tus resultados, es decir, ¿hay diferencia entre lo esperado con lo obtenido? Explica la respuesta que proporciones.
-% \end{frame}
 \end{document}

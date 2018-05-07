@@ -12,6 +12,7 @@
 \author[]{M. en C. Gustavo Contreras Mayén}
 \setbeamercolor{background canvas}{bg=white} %white = default
 \setbeamertemplate{caption}[numbered]
+\beamertemplatenavigationsymbolsempty
 \begin{document}
 \newcommand{\localtextbulletone}{\textcolor{gray}{\raisebox{.45ex}{\rule{.6ex}{.6ex}}}}
 \maketitle
@@ -58,7 +59,7 @@ Si aproximamos el valor medio de $f(x)$ por la media de $n$ evaluaciones de la f
 \begin{frame}[plain, fragile]
 \frametitle{Estimado la integral con python}
 Podemos implementar la ec. (\ref{eq:ecuacion_08_07}) en una pequeña función de \python:
-\begin{lstlisting}[caption=Función para la aproximar la integral, style=FormattedNumber, basicstyle=\linespread{1.1}\ttfamily=\small, columns=fullflexible]
+\begin{lstlisting}[caption=Función para aproximar la integral, style=FormattedNumber, basicstyle=\linespread{1.1}\ttfamily=\small, columns=fullflexible]
 import random
 
 def MCint(f, a, b, n):
@@ -257,7 +258,7 @@ El código sería
 \end{frame}
 \begin{frame}[plain, fragile]
 \frametitle{Código para la integral}
-\begin{lstlisting}[caption=Código para el método del daro, style=FormattedNumber, basicstyle=\linespread{1.1}\ttfamily=\small, columns=fullflexible]
+\begin{lstlisting}[caption=Código para el método del dardo, style=FormattedNumber, basicstyle=\linespread{1.1}\ttfamily=\small, columns=fullflexible]
 def MCint-area(f, a, b, n, m):
     porDebajo = 0 
     for i in range(n):
@@ -318,10 +319,24 @@ Al contar con los elementos necesarios, podemos implementar el código completo 
 \bigskip
 Haremos una estimación del tiempo que tarda en resolverse el problema usando el bucle y la versión vectorizada.
 \end{frame}
+\begin{frame}
+\frametitle{La librería \funcionazul{time}}
+La librería \funcionazul{time} proporciona un conjunto de funciones para registrar el tiempo en el equipo de cómputo.
+\\
+\bigskip
+Revisa la documentación de la librería, ya que tiene como punto particular el hecho de medir el tiempo a partir del 1 de enero de 1970, al momento actual en el equipo.
+\end{frame}
+\begin{frame}
+\frametitle{Para medir un intervalo}
+Para el ejercicio que haremos, se requiere medir un intervalo de tiempo entre dos eventos, por lo que no es necesario hacer alguna conversión de tiempo.
+\\
+\bigskip
+La función \funcionazul{time.clock()} hará el registro del tiempo en el equipo, para el intervalo, basta con que hagamos un segundo registro y tomar la diferencia entre éstos.
+\end{frame}
 \begin{frame}[plain, allowframebreaks, fragile]
 \begin{lstlisting}[caption=Implementación del código, style=FormattedNumber, basicstyle=\linespread{1.1}\ttfamily=\small, columns=fullflexible]
 def f_1_(x):
-    return 2 + 3*x
+    return 2 + 3 * x
 
 a = 1; b = 2; n = 1000000; N = 10000; fmax = f_1_(b)
 
@@ -343,6 +358,13 @@ print (I[-_1_])
 
 error = 6.5 - np.array(I)
 \end{lstlisting}
+\end{frame}
+\begin{frame}
+\frametitle{Graficando los puntos}
+A continuación se presenta una gráfica con los puntos aleatorios debajo de la función y por arriba de ésta.
+\\
+\bigskip
+No tendrás problema para implementar el código necesario para las gráficas.
 \end{frame}
 \begin{frame}
 \frametitle{Gráfica de la función}
@@ -380,7 +402,7 @@ error = 6.5 - np.array(I)
 \frametitle{Gráfica al incluir puntos aleatorios}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.55]{Imagenes/area_puntos_05.eps}
+    \includegraphics[scale=0.55]{Imagenes/area_puntos_05.png}
     \caption{Podríamos pensar que ya tenemos el valor de la integral.}
 \end{figure}
 \end{frame}
@@ -388,7 +410,7 @@ error = 6.5 - np.array(I)
 \frametitle{Gráfica al incluir puntos aleatorios}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.55]{Imagenes/area_puntos_06.eps}
+    \includegraphics[scale=0.55]{Imagenes/area_puntos_06.png}
     \caption{El resultado del cálculo de la integral es exacto.}
 \end{figure}
 \end{frame}
